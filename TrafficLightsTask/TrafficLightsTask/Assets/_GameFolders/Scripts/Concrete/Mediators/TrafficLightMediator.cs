@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace TrafficLightAssesment.Mediator
 {
-    public class TrafficLightMediator : IMediator<TrafficLightController>
+    //Due to zenject restriction, I made this class to be a MonoBehaviour, ServiceLocator might implement for this situation.
+    public class TrafficLightMediator : MonoBehaviour, IMediator<TrafficLightController>
     {
         List<TrafficLightController> _trafficLights;
         public void Notify(TrafficLightController sender, string eventMessage)
@@ -24,7 +25,6 @@ namespace TrafficLightAssesment.Mediator
             if (!_trafficLights.Contains(participant))
             {
                 _trafficLights.Add(participant);
-                participant.SetMediator(this);
             }
         }
         
