@@ -9,8 +9,7 @@ namespace TrafficLightAssesment.Controllers
     public class TrafficLightController : MonoBehaviour
     {
         [SerializeField] TrafficLightTimerSo _trafficLightTimerSo;
-        [SerializeField] TrafficLightMediator _trafficLightMediator;
-        IMediator<TrafficLightController> _mediator => _trafficLightMediator;
+        IMediator<TrafficLightController> _mediator;
         StateMachine.StateMachine _stateMachine;
         IState _greenLightState;
         IState _amberLightState;
@@ -18,6 +17,7 @@ namespace TrafficLightAssesment.Controllers
         void Awake()
         {
             _stateMachine = new StateMachine.StateMachine();
+            _mediator = GetComponentInParent<IMediator<TrafficLightController>>();
             _mediator.Register(this);
             _greenLightState = new GreenLightState(_trafficLightTimerSo);
             _amberLightState = new AmberLightState(_trafficLightTimerSo);
