@@ -13,26 +13,29 @@ namespace TrafficLightAssesment.StateMachine
         public void Update()
         {
             var transition = GetTransition();
-            if(transition != null)
+            if (transition != null)
                 ChangeState(transition.TargetState);
             current.State?.Update();
         }
+
         public void SetState(IState state)
         {
+            if (current == null) return;
             current = _nodes[state.GetType()];
             current.State?.Enter();
         }
 
         void ChangeState(IState state)
         {
-            if(state == current.State) return;
+            if (state == current.State) return;
             var prevState = current.State;
             var nextState = _nodes[state.GetType()].State;
-            
+
             prevState?.Exit();
             nextState?.Enter();
             current = _nodes[state.GetType()];
         }
+
         ITransition GetTransition()
         {
             foreach (var transition in _anyTransitions)
@@ -40,17 +43,21 @@ namespace TrafficLightAssesment.StateMachine
                 if (transition.Condition.Evaluate())
                     return transition;
             }
+
             foreach (var transition in current.Transitions)
             {
                 if (transition.Condition.Evaluate())
                     return transition;
             }
+
             return null;
         }
+
         public void AddTransition(IState from, IState to, IPredicate condition)
         {
             GetOrAddNode(from).AddTransition(GetOrAddNode(to).State, condition);
         }
+
         public void AddAnyTransition(IState to, IPredicate condition)
         {
             _anyTransitions.Add(new Transition(GetOrAddNode(to).State, condition));
@@ -63,7 +70,7 @@ namespace TrafficLightAssesment.StateMachine
             if (node == null)
             {
                 node = new StateNode(state);
-                _nodes.Add(state.GetType(),node);
+                _nodes.Add(state.GetType(), node);
             }
 
             return node;
@@ -71,7 +78,7 @@ namespace TrafficLightAssesment.StateMachine
 
         class StateNode
         {
-            public IState State { get;private set;}
+            public IState State { get; private set; }
             public HashSet<ITransition> Transitions { get; private set; }
 
             public StateNode(IState state)
@@ -86,5 +93,4 @@ namespace TrafficLightAssesment.StateMachine
             }
         }
     }
-    
 }

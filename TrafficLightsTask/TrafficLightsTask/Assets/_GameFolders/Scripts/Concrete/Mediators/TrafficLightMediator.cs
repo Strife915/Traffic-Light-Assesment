@@ -8,7 +8,8 @@ namespace TrafficLightAssesment.Mediator
     //Due to zenject restriction, I made this class to be a MonoBehaviour, ServiceLocator might implement for this situation.
     public class TrafficLightMediator : MonoBehaviour, IMediator<TrafficLightController>
     {
-        List<TrafficLightController> _trafficLights;
+        List<TrafficLightController> _trafficLights = new List<TrafficLightController>();
+
         public void Notify(TrafficLightController sender)
         {
             foreach (var trafficLight in _trafficLights)
@@ -16,10 +17,6 @@ namespace TrafficLightAssesment.Mediator
                 if (trafficLight != sender)
                 {
                     trafficLight.SetLightToRed();
-                }
-                else
-                {
-                    trafficLight.SetLightToGreen();
                 }
             }
         }
@@ -31,7 +28,5 @@ namespace TrafficLightAssesment.Mediator
                 _trafficLights.Add(participant);
             }
         }
-        
     }
-    
 }
