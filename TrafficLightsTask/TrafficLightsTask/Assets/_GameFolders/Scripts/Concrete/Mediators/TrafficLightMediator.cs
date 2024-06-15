@@ -9,13 +9,17 @@ namespace TrafficLightAssesment.Mediator
     public class TrafficLightMediator : MonoBehaviour, IMediator<TrafficLightController>
     {
         List<TrafficLightController> _trafficLights;
-        public void Notify(TrafficLightController sender, string eventMessage)
+        public void Notify(TrafficLightController sender)
         {
             foreach (var trafficLight in _trafficLights)
             {
                 if (trafficLight != sender)
                 {
                     trafficLight.SetLightToRed();
+                }
+                else
+                {
+                    trafficLight.SetLightToGreen();
                 }
             }
         }
