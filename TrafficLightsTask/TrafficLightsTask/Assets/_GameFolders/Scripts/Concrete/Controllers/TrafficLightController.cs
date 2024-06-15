@@ -8,8 +8,8 @@ namespace TrafficLightAssesment.Controllers
 {
     public class TrafficLightController : MonoBehaviour
     {
-        IMediator<TrafficLightController> _mediator;
         StateMachine.StateMachine _stateMachine;
+        IMediator<TrafficLightController> _mediator;
         IState _greenLightState;
         IState _amberLightState;
         IState _redLightState;

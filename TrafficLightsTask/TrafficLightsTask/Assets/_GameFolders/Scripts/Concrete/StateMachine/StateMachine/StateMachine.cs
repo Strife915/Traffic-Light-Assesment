@@ -20,7 +20,12 @@ namespace TrafficLightAssesment.StateMachine
 
         public void SetState(IState state)
         {
-            if (current == null) return;
+            var stateType = state.GetType();
+            if (!_nodes.ContainsKey(stateType))
+            {
+                _nodes[stateType] = GetOrAddNode(state);
+            }
+
             current = _nodes[state.GetType()];
             current.State?.Enter();
         }
