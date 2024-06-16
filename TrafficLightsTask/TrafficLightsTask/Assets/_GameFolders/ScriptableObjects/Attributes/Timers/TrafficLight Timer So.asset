@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ace01fcb273e57478116948a6441bff, type: 3}
   m_Name: TrafficLight Timer So
   m_EditorClassIdentifier: 
-  _greenTime: 0
-  _yellowTime: 0
-  _redTime: 0
+  _greenTime: 5
+  _yellowTime: 2
+  _redTime: 5

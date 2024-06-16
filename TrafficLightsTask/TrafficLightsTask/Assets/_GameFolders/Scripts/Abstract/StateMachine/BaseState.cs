@@ -2,13 +2,16 @@ namespace TrafficLightAssesment.Abstract.StateMachine
 {
     public abstract class BaseState : IState
     {
-        public virtual void Enter() { }
-        public virtual void Update() { }
-        public virtual void Exit() { }
-    }
+        public virtual void Enter()
+        {
+        }
 
-    public class BaseTrafficLightState : BaseState
-    {
+        public virtual void Update()
+        {
+        }
 
+        public virtual void Exit()
+        {
+        }
     }
 }
