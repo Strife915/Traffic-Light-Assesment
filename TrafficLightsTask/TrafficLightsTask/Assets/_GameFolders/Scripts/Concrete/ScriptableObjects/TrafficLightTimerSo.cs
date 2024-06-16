@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TrafficLightAssesment.ScriptableObjects
 {
-    [CreateAssetMenu(menuName = "MyAssestment/Attributes/Light Timer", fileName = "TrafficLight Timer So")]
+    [CreateAssetMenu(menuName = "MyAssessment/Attributes/Light Timer", fileName = "TrafficLight Timer So")]
     public class TrafficLightTimerSo : ScriptableObject
     {
         [SerializeField] float _greenTime; 

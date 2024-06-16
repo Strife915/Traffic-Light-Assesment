@@ -1,4 +1,5 @@
-﻿using TrafficLightAssesment.Abstract.Timer;
+﻿using System;
+using TrafficLightAssesment.Abstract.Timer;
 using TrafficLightAssesment.Controllers;
 
 namespace TrafficLightAssesment.Abstract.StateMachine
@@ -7,7 +8,7 @@ namespace TrafficLightAssesment.Abstract.StateMachine
     {
         ITimer _timer;
         protected TrafficLightController _trafficLightController;
-
+        
         public BaseLightFacadeState(ITimer timer, TrafficLightController trafficLightController)
         {
             _timer = timer;

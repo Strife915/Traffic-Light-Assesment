@@ -1,3 +1,4 @@
+using System;
 using TrafficLightAssesment.Abstract.Mediator;
 using TrafficLightAssesment.Abstract.StateMachine;
 using TrafficLightAssesment.Abstract.Timer;
@@ -22,7 +23,7 @@ namespace TrafficLightAssesment.Facade
         IState _greenLightFacadeState;
         IState _amberLightFacadeState;
         IState _redLightFacadeState;
-
+        
         void Awake()
         {
             _stateMachine = new StateMachine.StateMachine();
@@ -33,11 +34,6 @@ namespace TrafficLightAssesment.Facade
             _greenLightFacadeState = new GreenLightFacadeState(_greenTimer, _initialGreen);
             _amberLightFacadeState = new AmberLightFacadeState(_amberTimer, _initialGreen);
             _redLightFacadeState = new RedLightFacadeState(_redTimer, _initialGreen);
-
-            // At(_greenLightFacadeState, _amberLightFacadeState, new FuncPredicate(() => _greenTimer.TimerFinished));
-            // At(_amberLightFacadeState, _redLightFacadeState, new FuncPredicate((() => _amberTimer.TimerFinished)));
-            // At(_redLightFacadeState, _amberLightFacadeState, new FuncPredicate((() => _amberTimer.TimerFinished)));
-            // At(_amberLightFacadeState, _greenLightFacadeState, new FuncPredicate((() => _amberTimer.TimerFinished)));
 
             Any(_amberLightFacadeState,
                 new FuncPredicate((() => _greenTimer.TimerFinished || _redTimer.TimerFinished)));
