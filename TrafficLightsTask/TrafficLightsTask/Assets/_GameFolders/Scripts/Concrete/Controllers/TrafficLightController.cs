@@ -11,12 +11,14 @@ namespace TrafficLightAssesment.Controllers
 {
     public class TrafficLightController : MonoBehaviour
     {
+        [SerializeField] bool _isPlayerHere;
         StateMachine.StateMachine _stateMachine;
         IMediator<TrafficLightController> _mediator;
         IState _greenLightState;
         IState _amberLightState;
         IState _redLightState;
         public LightStateStruct LightStateStruct = new LightStateStruct();
+        public bool IsPlayerHere => _isPlayerHere;
 
         void Awake()
         {
