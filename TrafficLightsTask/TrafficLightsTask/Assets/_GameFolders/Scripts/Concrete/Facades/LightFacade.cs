@@ -1,4 +1,3 @@
-using System;
 using TrafficLightAssesment.Abstract.Mediator;
 using TrafficLightAssesment.Abstract.StateMachine;
 using TrafficLightAssesment.Abstract.Timer;
@@ -6,7 +5,6 @@ using TrafficLightAssesment.Controllers;
 using TrafficLightAssesment.Predicate;
 using TrafficLightAssesment.ScriptableObjects;
 using TrafficLightAssesment.StateMachine;
-using TrafficLightAssesment.Timer;
 using UnityEngine;
 
 namespace TrafficLightAssesment.Facade
