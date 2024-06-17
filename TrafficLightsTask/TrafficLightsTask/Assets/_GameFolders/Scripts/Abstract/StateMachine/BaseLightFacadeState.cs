@@ -7,6 +7,7 @@ namespace TrafficLightAssesment.Abstract.StateMachine
     public abstract class BaseLightFacadeState : BaseState
     {
         ITimer _timer;
+        public static event Action OnLightChange; 
         protected TrafficLightController _trafficLightController;
         
         public BaseLightFacadeState(ITimer timer, TrafficLightController trafficLightController)
@@ -18,6 +19,7 @@ namespace TrafficLightAssesment.Abstract.StateMachine
         public override void Enter()
         {
             _timer.StartTimer();
+            OnLightChange?.Invoke();
         }
 
         public override void Exit()

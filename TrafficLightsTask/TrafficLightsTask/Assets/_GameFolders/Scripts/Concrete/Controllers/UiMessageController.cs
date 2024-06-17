@@ -11,6 +11,12 @@ namespace TrafficLightAssesment.Controllers
         {
             _messageText.text = message;
         }
+
+        public void ShowNoPlayerMessage()
+        {
+            _messageText.text = "Player is not on the traffic light.";
+        }
+        
     }
 }
 
