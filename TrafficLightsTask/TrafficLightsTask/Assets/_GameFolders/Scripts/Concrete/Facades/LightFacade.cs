@@ -23,14 +23,16 @@ namespace TrafficLightAssesment.Facade
         IState _greenLightFacadeState;
         IState _amberLightFacadeState;
         IState _redLightFacadeState;
+        TimerFactory _timerFactory;
         
         void Awake()
         {
             _stateMachine = new StateMachine.StateMachine();
             _mediator = GetComponent<IMediator<TrafficLightController>>();
-            _greenTimer = new GreenLightTimer(_timerSo);
-            _amberTimer = new AmberLightTimer(_timerSo);
-            _redTimer = new RedLightTimer(_timerSo);
+            _timerFactory = new TimerFactory(_timerSo);
+            _greenTimer = _timerFactory.CreateTimer("Green");
+            _amberTimer = _timerFactory.CreateTimer("Amber");
+            _redTimer = _timerFactory.CreateTimer("Red");
             _greenLightFacadeState = new GreenLightFacadeState(_greenTimer, _initialGreen);
             _amberLightFacadeState = new AmberLightFacadeState(_amberTimer, _initialGreen);
             _redLightFacadeState = new RedLightFacadeState(_redTimer, _initialGreen);

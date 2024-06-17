@@ -20,24 +20,31 @@ namespace TrafficLightAssesment.Controllers
         void UpdateButtonText()
         {
             TrafficLightController trafficLightController = _trafficLightFinder.FindTrafficLightWithPlayer();
-            if(_trafficLightFinder == null) return;
-            LightStateStruct lightStateStruct = trafficLightController.LightStateStruct;
-            if (lightStateStruct.IsGreen)
+            if (_trafficLightFinder == null)
             {
-                _messageText.text = "Drive";
+                _messageText.text = "Player not on traffic light";
             }
-            else if (lightStateStruct.IsAmber && LightFacadeHelper.TurnToRed)
+            else
             {
-                _messageText.text = "Cant Drive";
+                LightStateStruct lightStateStruct = trafficLightController.LightStateStruct;
+                if (lightStateStruct.IsGreen)
+                {
+                    _messageText.text = "Drive";
+                }
+                else if (lightStateStruct.IsAmber && LightFacadeHelper.TurnToRed)
+                {
+                    _messageText.text = "Cant Drive";
+                }
+                else if(lightStateStruct.IsAmber && !LightFacadeHelper.TurnToRed)
+                {
+                    _messageText.text = "Drive";
+                }
+                else if (lightStateStruct.IsRed)
+                {
+                    _messageText.text = "Cant Drive";
+                } 
             }
-            else if(lightStateStruct.IsAmber && !LightFacadeHelper.TurnToRed)
-            {
-                _messageText.text = "Drive";
-            }
-            else if (lightStateStruct.IsRed)
-            {
-                _messageText.text = "Cant Drive";
-            }
+           
         }
     }
 }
